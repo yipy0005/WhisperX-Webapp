@@ -57,26 +57,31 @@ def align_transcription(
 # utils/transcription.py
 
 
-def generate_subtitles(transcription_result, options):
+def generate_subtitles(transcription_result, options, format_type="srt"):
     """
-    Generates subtitle content from the transcription result.
+    Generates subtitle content from the transcription result in the specified format.
+
+    Parameters:
+        transcription_result (dict): The transcription result.
+        options (dict): Processing options.
+        format_type (str): The desired file format, 'srt' or 'txt'.
+
     Returns:
-        content (str): The content of the subtitle file.
-        filename (str): The name of the subtitle file.
+        tuple: (subtitle content as string, suggested file name)
     """
-    # Generate the subtitle content based on the transcription result
-    # Example placeholder logic for subtitle generation:
-    subtitle_content = ""
-    for segment in transcription_result["segments"]:
-        start_time = segment["start"]
-        end_time = segment["end"]
-        text = segment["text"]
-        subtitle_content += f"{start_time} --> {end_time}\n{text}\n\n"
+    output = StringIO()
 
-    # Define the subtitle filename
-    subtitle_filename = "transcription.srt"  # or use other formats like .vtt or .txt
+    if format_type == "srt":
+        for idx, segment in enumerate(transcription_result["segments"], start=1):
+            start_time = format_timestamp(segment["start"])
+            end_time = format_timestamp(segment["end"])
+            text = segment["text"]
+            output.write(f"{idx}\n{start_time} --> {end_time}\n{text}\n\n")
+    elif format_type == "txt":
+        for segment in transcription_result["segments"]:
+            output.write(f"{segment['text']}\n")
 
-    return subtitle_content, subtitle_filename
+    return output.getvalue(), f"transcription.{format_type}"
 
 
 def format_timestamp(seconds):
