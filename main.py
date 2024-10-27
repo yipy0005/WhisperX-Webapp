@@ -13,7 +13,7 @@ from components.model_loader import (
     load_diarization_model,
 )
 from components.processing_options import select_processing_options
-from components.result_display import display_transcription
+from components.result_display import display_transcription, download_transcription
 from utils.audio_processing import process_audio
 from utils.transcription import (
     align_transcription,
@@ -179,14 +179,9 @@ def main():
             # Complete progress bar
             progress_bar.progress(100)
 
-    # Download Subtitle Button
-    if st.session_state["subtitle_content"] and st.session_state["subtitle_filename"]:
-        st.download_button(
-            label="Download Subtitle File",
-            data=st.session_state["subtitle_content"],
-            file_name=st.session_state["subtitle_filename"],
-            mime="text/plain",
-        )
+    # Step 5: Download Transcription
+    st.sidebar.title("Step 5: Download Transcription")
+    download_transcription()
 
 
 if __name__ == "__main__":
