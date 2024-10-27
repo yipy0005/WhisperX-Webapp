@@ -1,18 +1,19 @@
 
 # WhisperX Audio Transcription and Diarization Web App
 
-This project is a simple web application built with Streamlit for performing audio transcription and speaker diarization using WhisperX models. The application supports audio and video files, including `.mp3`, `.wav`, `.m4a`, and `.mp4`.
+This project is a user-friendly web application built with **Streamlit** for audio transcription and speaker diarization using WhisperX models. It supports both audio and video files, including `.mp3`, `.wav`, `.m4a`, and `.mp4`, with a focus on accurate transcription, speaker identification, and customizable processing options.
 
-## Features
+## Key Features
 
-- **Audio Transcription**: Convert spoken content in audio or video files into text.
-- **Speaker Diarization**: Identify and label different speakers in multi-speaker recordings.
-- **Alignment**: Accurate alignment of text to audio timestamps, with optional character-level precision.
-- **Batch Processing**: Handle audio in customizable segments for optimized memory usage.
+- **Audio Transcription**: Convert spoken content in audio or video files into accurate text transcriptions.
+- **Speaker Diarization**: Automatically identify and label different speakers in multi-speaker recordings.
+- **Precise Alignment**: Synchronize transcription text with audio timestamps, with optional character-level detail.
+- **Batch Processing**: Process audio in user-defined segments to optimize memory and performance.
+- **Downloadable Outputs**: Export results in `.srt` or `.txt` format for easy sharing and use.
 
 ## Directory Structure
 
-```
+```plaintext
 ./
 ├── components
 │   ├── file_uploader.py         # Handles file upload via Streamlit
@@ -24,39 +25,40 @@ This project is a simple web application built with Streamlit for performing aud
 │   ├── config.py                # Configuration for Hugging Face tokens
 │   ├── diarization.py           # Diarization logic for speaker separation
 │   └── transcription.py         # Transcription and alignment functions
+├── DOCUMENTATION.md             # Detailed user guide for the app
 ├── environment.yaml             # Conda environment configuration
 └── main.py                      # Main Streamlit app file
 ```
 
-## Installation
+## Getting Started
 
 ### Prerequisites
 
-- Install [Anaconda](https://www.anaconda.com/products/individual-download) or [Miniconda](https://docs.conda.io/en/latest/miniconda.html).
-- Ensure you have [Git](https://git-scm.com/) installed to clone the repository.
+- **Anaconda** or **Miniconda** (recommended for environment management)
+- **Git** for cloning the repository
 
-### Step-by-Step Setup
+### Installation Guide
 
-1. **Clone the repository**:
+1. **Clone the Repository**:
 
    ```bash
    git clone git@github.com:yipy0005/WhisperX-Webapp.git
    cd WhisperX-Webapp
    ```
 
-2. **Set up the Conda environment**:
+2. **Create the Conda Environment**:
 
-   To create a new environment with all the dependencies specified, use:
+   Set up a dedicated environment using the provided configuration:
 
    ```bash
    conda env create -f environment.yaml
    ```
 
-   This command will:
+   This will:
    - Create a new Conda environment named `whisperx_webapp`.
-   - Install Python 3.10 and all required packages.
+   - Install Python 3.10 and all required dependencies.
 
-3. **Activate the Conda environment**:
+3. **Activate the Environment**:
 
    ```bash
    conda activate whisperx_webapp
@@ -70,17 +72,43 @@ This project is a simple web application built with Streamlit for performing aud
    conda activate whisperx_webapp
    ```
 
-2. **Run the Streamlit app**:
+2. **Launch the Streamlit App**:
 
    ```bash
    streamlit run main.py
    ```
 
-3. Open your web browser and go to the URL provided by Streamlit, usually `http://localhost:8501`.
+3. **Access the App**:
+   Open your web browser and navigate to `http://localhost:8501` to use the app.
+
+## Usage Guide
+
+To learn more about using the app, including detailed instructions for each step, please refer to the [DOCUMENTATION.md](DOCUMENTATION.md) file.
 
 ## Troubleshooting
 
-If you encounter any issues or have questions:
+### Common Issues
+1. **Environment Activation**: Ensure your Conda environment is activated (`conda activate whisperx_webapp`) before running the app.
+2. **CUDA Device Not Found**: If you're encountering GPU-related errors, ensure your system has a compatible GPU and CUDA setup. Alternatively, you can run the app on the CPU.
+3. **Memory Management**: If you experience memory constraints during processing, reduce the batch size in the app's settings.
 
-1. Make sure your Conda environment is activated (`conda activate whisperx_webapp`).
-2. If you still encounter problems, please **raise an issue** in the GitHub repository, and provide a detailed description of the problem.
+### Getting Help
+For any unresolved issues or questions, feel free to [open an issue](https://github.com/yipy0005/WhisperX-Webapp/issues) on the GitHub repository. Please include a detailed description of the problem to help us assist you better.
+
+## Contribution
+
+Contributions are welcome! If you'd like to enhance the app or report bugs, follow these steps:
+1. **Fork the Repository**
+2. **Create a New Branch** for your feature or fix.
+3. **Submit a Pull Request** with a detailed description of changes.
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
+
+## Acknowledgements
+
+- **Streamlit**: For providing a simple and powerful framework for building web applications.
+- **WhisperX**: For enabling advanced audio transcription and diarization capabilities.
+
+Feel free to explore, experiment, and contribute to the project!
