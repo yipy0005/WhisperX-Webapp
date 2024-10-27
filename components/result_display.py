@@ -7,11 +7,20 @@ def display_transcription(transcription_result):
         st.write(f"[{segment['start']} - {segment['end']}]: {segment['text']}")
 
 
-# def download_results(subtitles, options):
-#     st.subheader("Download Results")
-#     if subtitles:
-#         subtitle_format = st.selectbox("Choose Subtitle Format", options=["SRT", "VTT"])
-#         subtitle_file = f"transcription.{subtitle_format.lower()}"
-#         st.download_button(
-#             "Download Subtitles", data=subtitles, file_name=subtitle_file
-#         )
+def download_transcription():
+    st.subheader("Download Transcription")
+
+    if st.session_state["subtitle_content"] and st.session_state["subtitle_filename"]:
+        # Choose the file format
+        file_format = st.selectbox("Choose File Format", options=["srt", "txt"])
+
+        # Update the file extension based on the selected format
+        file_name = f"transcription.{file_format}"
+
+        # Display download button
+        st.download_button(
+            label="Download Transcription File",
+            data=st.session_state["subtitle_content"],
+            file_name=file_name,
+            mime="text/plain",
+        )
